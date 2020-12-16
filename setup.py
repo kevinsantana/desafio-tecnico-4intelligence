@@ -13,6 +13,9 @@ run_requirements = [
     "gunicorn==19.9.0",
     "aiofiles==0.5.0",
     "pytest==6.2.1",
+    "requests==2.23.0",
+    "sphinx-rtd-theme==0.1.9",
+    "recommonmark==0.6.0",
 ]
 
 here = path.abspath(path.dirname(__file__))
