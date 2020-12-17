@@ -1,116 +1,118 @@
 -- -----------------------------------------------------
 -- DROP TABLES
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS public."USUARIO";
-DROP TABLE IF EXISTS public."DOMINIO_UF";
-DROP TABLE IF EXISTS public."LOCALIZACAO";
-DROP TABLE IF EXISTS public."LOCAL_PUBLICO";
-DROP TABLE IF EXISTS public."ENDERECO";
+DROP TABLE IF EXISTS public.USUARIO CASCADE;
+DROP TABLE IF EXISTS public.DOMINIO_UF CASCADE;
+DROP TABLE IF EXISTS public.LOCALIZACAO CASCADE;
+DROP TABLE IF EXISTS public.LOCAL_PUBLICO CASCADE;
+DROP TABLE IF EXISTS public.ENDERECO CASCADE;
 
 
 -- -----------------------------------------------------
--- Table public."USUARIO"
+-- Table public.USUARIO
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS public."USUARIO" (
-  "id_usuario" SERIAL PRIMARY KEY,
-  "nome" VARCHAR(100) NOT NULL,
-  "data_nascimento" DATE NULL,
-  "cpf" VARCHAR(11) NOT NULL
+CREATE TABLE IF NOT EXISTS public.USUARIO (
+  ID_USUARIO SERIAL PRIMARY KEY,
+  NOME VARCHAR(100) NOT NULL,  
+  CPF VARCHAR(11) NOT NULL UNIQUE,
+  DATA_NASCIMENTO TIMESTAMP NULL
   );
 
 
 -- -----------------------------------------------------
--- Table public."DOMINIO_UF"
+-- Table public.DOMINIO_UF
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS public."DOMINIO_UF" (
-  "id_uf" SERIAL PRIMARY KEY,
-  "uf" CHAR(2) NOT NULL UNIQUE,
-  "descricao" VARCHAR(30) NOT NULL UNIQUE
+CREATE TABLE IF NOT EXISTS public.DOMINIO_UF (
+  ID_UF SERIAL PRIMARY KEY,
+  UF CHAR(2) NOT NULL UNIQUE,
+  DESCRICAO VARCHAR(30) NOT NULL UNIQUE
   );
 
 
 -- -----------------------------------------------------
--- Table public."LOCALIZACAO"
+-- Table public.LOCALIZACAO
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS public."LOCALIZACAO" (
-  "id_localizacao" SERIAL PRIMARY KEY,
-  "rua" VARCHAR(100) NULL,
-  "numero" SMALLINT NULL,
-  "cep" VARCHAR(15) NULL,
-  "cidade" VARCHAR(50) NULL
+CREATE TABLE IF NOT EXISTS public.LOCALIZACAO (
+  ID_LOCALIZACAO SERIAL PRIMARY KEY,
+  RUA VARCHAR(100) NULL,
+  NUMERO SMALLINT NULL,
+  CEP VARCHAR(15) NULL,
+  CIDADE VARCHAR(50) NULL
   );
 
 
 -- -----------------------------------------------------
--- Table public."LOCAL_PUBLICO"
+-- Table public.LOCAL_PUBLICO
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS public."LOCAL_PUBLICO" (
-  "id_uf" INT NOT NULL,
-  "id_localizacao" INT NOT NULL,
-  PRIMARY KEY ("id_uf", "id_localizacao"),
-  CONSTRAINT "FK_UF"
-    FOREIGN KEY ("id_uf")
-    REFERENCES public."DOMINIO_UF" ("id_uf")
+CREATE TABLE IF NOT EXISTS public.LOCAL_PUBLICO (
+  ID_UF INT NOT NULL,
+  ID_LOCALIZACAO INT NOT NULL,
+  PRIMARY KEY (ID_UF, ID_LOCALIZACAO),
+  CONSTRAINT FK_UF
+    FOREIGN KEY (ID_UF)
+    REFERENCES public.DOMINIO_UF (ID_UF)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT "FK_LOCALIZACAO"
-    FOREIGN KEY ("id_localizacao")
-    REFERENCES public."LOCALIZACAO" ("id_localizacao")
+  CONSTRAINT FK_LOCALIZACAO
+    FOREIGN KEY (ID_LOCALIZACAO)
+    REFERENCES public.LOCALIZACAO (ID_LOCALIZACAO)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
     );
 
 
 -- -----------------------------------------------------
--- Table public."ENDERECO"
+-- Table public.ENDERECO
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS public."ENDERECO" (
-  "id_endereco" SERIAL PRIMARY KEY,
-  "id_uf" INT NOT NULL,
-  "id_localizacao" INT NOT NULL,
-  "id_usuario" INT NOT NULL,  
-  CONSTRAINT "FK_LOCAL_PUBLICO"
-    FOREIGN KEY ("id_uf" , "id_localizacao")
-    REFERENCES public."LOCAL_PUBLICO" ("id_uf" , "id_localizacao")
+CREATE TABLE IF NOT EXISTS public.ENDERECO (
+  ID_ENDERECO SERIAL PRIMARY KEY,
+  ID_UF INT NOT NULL,
+  ID_LOCALIZACAO INT NOT NULL,
+  ID_USUARIO INT NOT NULL,  
+  CONSTRAINT FK_LOCAL_PUBLICO
+    FOREIGN KEY (ID_UF , ID_LOCALIZACAO)
+    REFERENCES public.LOCAL_PUBLICO (ID_UF , ID_LOCALIZACAO)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT "FK_USUARIO"
-    FOREIGN KEY ("id_usuario")
-    REFERENCES public."USUARIO" ("id_usuario")
+  CONSTRAINT FK_USUARIO
+    FOREIGN KEY (ID_USUARIO)
+    REFERENCES public.USUARIO (ID_USUARIO)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
     );
 
-CREATE INDEX "ID_USUARIO_INDEX" ON public."ENDERECO" ("id_usuario");
+CREATE INDEX ID_USUARIO_INDEX ON public.ENDERECO (ID_USUARIO);
 
 
 -- -----------------------------------------------------
--- INSERT "DOMINIO_UF"
+-- INSERT DOMINIO_UF
 -- -----------------------------------------------------
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (1, 'AC', 'ACRE');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (2, 'AL', 'ALAGOAS');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (3, 'AM', 'AMAZONAS');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (4, 'AP', 'AMAPÁ');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (5, 'BA', 'BAHIA');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (6, 'CE', 'CEARÁ');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (7, 'DF', 'DISTRITO FEDERAL');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (8, 'ES', 'ESPÍRITO SANTO');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (9, 'GO', 'GOIÁS');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (10, 'MA', 'MARANHÃO');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (11, 'MG', 'MINAS GERAIS');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (12, 'MS', 'MATO GROSSO DO SUL');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (13, 'MT', 'MATO GROSSO');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (14, 'PA', 'PARÁ');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (15, 'PB', 'PARAÍBA');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (16, 'PE', 'PERNAMBUCO');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (17, 'PI', 'PIAUÍ');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (18, 'PR', 'PARANÁ');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (19, 'RJ', 'RIO DE JANEIRO');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (20, 'RN', 'RIO GRANDE DO NORTE');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (21, 'RO', 'RONDÔNIA');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (22, 'RR', 'RORAIMA');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (23, 'RS', 'RIO GRANDE DO SUL');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (24, 'SC', 'SANTA CATARINA');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (25, 'SE', 'SERGIPE');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (26, 'SP', 'SÃO PAULO');
-INSERT INTO public."DOMINIO_UF" ("id_uf", "uf", "descricao") VALUES (27, 'TO', 'TOCANTINS');
+INSERT INTO public.DOMINIO_UF (UF, DESCRICAO)
+VALUES 
+    ('AC', 'ACRE'),
+    ('AL', 'ALAGOAS'),
+    ('AM', 'AMAZONAS'),
+    ('AP', 'AMAPÁ'),
+    ('BA', 'BAHIA'),
+    ('CE', 'CEARÁ'),
+    ('DF', 'DISTRITO FEDERAL'),
+    ('ES', 'ESPÍRITO SANTO'),
+    ('GO', 'GOIÁS'),
+    ('MA', 'MARANHÃO'),
+    ('MG', 'MINAS GERAIS'),
+    ('MS', 'MATO GROSSO DO SUL'),
+    ('MT', 'MATO GROSSO'),
+    ('PA', 'PARÁ'),
+    ('PB', 'PARAÍBA'),
+    ('PE', 'PERNAMBUCO'),
+    ('PI', 'PIAUÍ'),
+    ('PR', 'PARANÁ'),
+    ('RJ', 'RIO DE JANEIRO'),
+    ('RN', 'RIO GRANDE DO NORTE'),
+    ('RO', 'RONDÔNIA'),
+    ('RR', 'RORAIMA'),
+    ('RS', 'RIO GRANDE DO SUL'),
+    ('SC', 'SANTA CATARINA'),
+    ('SE', 'SERGIPE'),
+    ('SP', 'SÃO PAULO'),
+    ('TO', 'TOCANTINS');

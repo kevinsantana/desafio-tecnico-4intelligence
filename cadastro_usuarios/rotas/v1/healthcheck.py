@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from cadastro_usuarios.modules import healthcheck
-from cadastro_usuarios.models.healthcheck import HealthcheckResponse, HEALTHCHECK_RESPONSE
+from cadastro_usuarios.modulos import healthcheck
+from cadastro_usuarios.modelos.healthcheck import HealthcheckResponse, HEALTHCHECK_RESPONSE
 
 router = APIRouter()
 
@@ -13,4 +13,4 @@ def listar():
     O objetivo do endpoint é informar se a API está no ar, além disso, serve como \
     padrão para os demais endpoints.
     """
-    return {"result": healthcheck.health_condition()}
+    return {"resultado": healthcheck.health_condition()}

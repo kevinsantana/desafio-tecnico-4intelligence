@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Instalação e Execução &mdash; Desafio Técnico Juntos Somos Mais - Cadastro Clientes</title>
+  <title>Construído Com &mdash; Desafio Técnico 4intelligence - Cadastro Clientes</title>
   
 
   
@@ -33,9 +33,9 @@
         <link rel="index" title="Índice"
               href="../genindex.html"/>
         <link rel="search" title="Buscar" href="../search.html"/>
-    <link rel="top" title="Desafio Técnico Juntos Somos Mais - Cadastro Clientes" href="../index.html"/>
-        <link rel="next" title="Executando testes" href="tests.html"/>
-        <link rel="prev" title="Prerequisites" href="pre_req.html"/> 
+    <link rel="top" title="Desafio Técnico 4intelligence - Cadastro Clientes" href="../index.html"/>
+        <link rel="next" title="Deploy" href="deploy.html"/>
+        <link rel="prev" title="Executando testes" href="tests.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -83,15 +83,21 @@
                 <p class="caption"><span class="caption-text">Documentação básica</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="pre_req.html">Prerequisites</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Instalação e Execução</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instalacao.html">Instalação e Execução</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tests.html">Executando testes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="made_with.html">Construído Com</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Construído Com</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deploy.html">Deploy</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Documentação do Código</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Módulos</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="modules.html#healthcheck">Healthcheck</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modulos.html#healthcheck">Healthcheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modulos.html#usuario">Usuário</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="database.html#classe-database">Classe Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#module-database.usuario">Usuário</a></li>
 </ul>
 </li>
 </ul>
@@ -124,11 +130,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Instalação e Execução</li>
+    <li>Construído Com</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/pages/installation.md.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/pages/feito_com.md.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -138,18 +144,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="instalacao-e-execucao">
-<h1>Instalação e Execução<a class="headerlink" href="#instalacao-e-execucao" title="Link permanente para este título">¶</a></h1>
-<p>A execução da aplicação é dividida em duas partes: <code class="docutils literal notranslate"><span class="pre">build</span></code> das imagens consumidas pelos containers e a execução dos containers. Para o <a class="reference external" href="./build.sh">build</a> das imagens é necessário executar o seguinte comando:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash build.sh
-</pre></div>
-</div>
-<p>Com as imagens <em>buildadas</em> é possível executar os containers, através do comando:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash run.sh
-</pre></div>
-</div>
-<p>Com a aplicação no ar, basta acessar o <a class="reference external" href="http://localhost:3000/v1/docs">ReDoc</a> para saber como utilizar cada um dos <em>endpoints</em> e para utilizar os <em>endpoints</em> acesse o <a class="reference external" href="http://localhost:3000/v1/swagger">Swagger</a>.</p>
-<p>Com todo o ambiente rodando, antes mesmo de instalar e rodar a aplicação, é preciso executar a query de criação no banco de dados. Entre no PGAdmin configure o acesso ao banco de dados e execute a query do arquivo <a class="reference external" href="#"><code class="docutils literal notranslate"><span class="pre">create.sql</span></code></a>.</p>
+  <div class="section" id="construido-com">
+<h1>Construído Com<a class="headerlink" href="#construido-com" title="Link permanente para este título">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Delgan/loguru">loguru</a></p></li>
+<li><p><a class="reference external" href="https://pydantic-docs.helpmanual.io">pydantic</a></p></li>
+<li><p><a class="reference external" href="https://fastapi.tiangolo.com">fastapi</a></p></li>
+<li><p><a class="reference external" href="https://www.uvicorn.org">uvicorn</a></p></li>
+<li><p><a class="reference external" href="https://gunicorn.org">gunicorn</a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/master/">sphinx</a></p></li>
+<li><p><a class="reference external" href="uvloop">uvloop</a></p></li>
+</ul>
 </div>
 
 
@@ -159,10 +164,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="tests.html" class="btn btn-neutral float-right" title="Executando testes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="deploy.html" class="btn btn-neutral float-right" title="Deploy" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pre_req.html" class="btn btn-neutral" title="Prerequisites" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tests.html" class="btn btn-neutral" title="Executando testes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

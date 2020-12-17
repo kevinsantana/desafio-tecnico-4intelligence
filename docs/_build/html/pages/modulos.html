@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Módulos &mdash; Desafio Técnico Juntos Somos Mais - Cadastro Clientes</title>
+  <title>Módulos &mdash; Desafio Técnico 4intelligence - Cadastro Clientes</title>
   
 
   
@@ -33,7 +33,8 @@
         <link rel="index" title="Índice"
               href="../genindex.html"/>
         <link rel="search" title="Buscar" href="../search.html"/>
-    <link rel="top" title="Desafio Técnico Juntos Somos Mais - Cadastro Clientes" href="../index.html"/>
+    <link rel="top" title="Desafio Técnico 4intelligence - Cadastro Clientes" href="../index.html"/>
+        <link rel="next" title="Database" href="database.html"/>
         <link rel="prev" title="Deploy" href="deploy.html"/> 
 
   
@@ -82,15 +83,21 @@
                 <p class="caption"><span class="caption-text">Documentação básica</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="pre_req.html">Prerequisites</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Instalação e Execução</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instalacao.html">Instalação e Execução</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tests.html">Executando testes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="made_with.html">Construído Com</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feito_com.html">Construído Com</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deploy.html">Deploy</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Documentação do Código</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Módulos</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#healthcheck">Healthcheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usuario">Usuário</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="database.html#classe-database">Classe Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#module-database.usuario">Usuário</a></li>
 </ul>
 </li>
 </ul>
@@ -127,7 +134,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/pages/modules.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/pages/modulos.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -142,9 +149,9 @@
 <div class="section" id="healthcheck">
 <h2>Healthcheck<a class="headerlink" href="#healthcheck" title="Link permanente para este título">¶</a></h2>
 <p>Verifica o estado de saúde da API.</p>
-<span class="target" id="module-modules.healthcheck"></span><dl class="py function">
-<dt id="modules.healthcheck.health_condition">
-<code class="sig-prename descclassname">modules.healthcheck.</code><code class="sig-name descname">health_condition</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#modules.healthcheck.health_condition" title="Link permanente para esta definição">¶</a></dt>
+<span class="target" id="module-modulos.healthcheck"></span><dl class="py function">
+<dt id="modulos.healthcheck.health_condition">
+<code class="sig-prename descclassname">modulos.healthcheck.</code><code class="sig-name descname">health_condition</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#modulos.healthcheck.health_condition" title="Link permanente para esta definição">¶</a></dt>
 <dd><p>Informa o estado de saúde da aplicação. O objetivo é prover um padrão de     estrutura de arquivos do projeto.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Retorna</dt>
@@ -152,6 +159,31 @@
 </dd>
 <dt class="field-even">Tipo de retorno</dt>
 <dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="usuario">
+<h2>Usuário<a class="headerlink" href="#usuario" title="Link permanente para este título">¶</a></h2>
+<p>Operações com usuários.</p>
+<span class="target" id="module-modulos.usuario"></span><dl class="py function">
+<dt id="modulos.usuario.inserir">
+<code class="sig-prename descclassname">modulos.usuario.</code><code class="sig-name descname">inserir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nome</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data_nascimento</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modulos.usuario.inserir" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Insere um usuário no banco de dados, verificando se o cpf é consistente.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nome</strong> (<em>str</em>) – Nome do usuário.</p></li>
+<li><p><strong>cpf</strong> (<em>str</em>) – CPF do usuário, aqui devem ser informados apenas os digítos.</p></li>
+<li><p><strong>data_nascimento</strong> (<em>str</em>) – Data de nascimento do usuário.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return bool</dt>
+<dd class="field-even"><p>True se o usuário tiver sido inserido com sucesso, False caso contrário.</p>
+</dd>
+<dt class="field-odd">Levanta</dt>
+<dd class="field-odd"><p><strong>CpfInvalidoException</strong> – O CPF informado não é válido.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -165,6 +197,8 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="database.html" class="btn btn-neutral float-right" title="Database" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="deploy.html" class="btn btn-neutral" title="Deploy" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

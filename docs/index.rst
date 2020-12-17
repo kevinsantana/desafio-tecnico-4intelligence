@@ -22,9 +22,9 @@ Links
    :titlesonly:
 
    /pages/pre_req.md
-   /pages/installation.md
+   /pages/instalacao.md
    /pages/tests.md
-   /pages/made_with.md
+   /pages/feito_com.md
    /pages/deploy.md
 
 
@@ -32,7 +32,8 @@ Links
    :maxdepth: 2
    :caption: Documentação do Código
 
-   /pages/modules
+   /pages/modulos
+   pages/database
 
 
 Tabelas e Índices

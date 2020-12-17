@@ -9,8 +9,12 @@ class TestHealthCheck(unittest.TestCase):
 
     def test_health_check(self):
         self.assertEqual(self.response_health_check.status_code, 200)
-        self.assertIn("result", self.response_health_check.json())
-        self.assertIs(type(self.response_health_check.json().get("result")), list)
+        self.assertIn("resultado", self.response_health_check.json())
+        self.assertIs(type(self.response_health_check.json().get("resultado")), list)
+
+
+class TestUser(unittest.TestCase):
+    pass
 
 
 if __name__ == "__main__":
