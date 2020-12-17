@@ -96,7 +96,7 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Database</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#classe-database">Classe Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-database.usuario">Usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usuario">Usuário</a></li>
 </ul>
 </li>
 </ul>
@@ -160,8 +160,68 @@
 </dd></dl>
 
 </div>
-<div class="section" id="module-database.usuario">
-<span id="usuario"></span><h2>Usuário<a class="headerlink" href="#module-database.usuario" title="Link permanente para este título">¶</a></h2>
+<div class="section" id="usuario">
+<h2>Usuário<a class="headerlink" href="#usuario" title="Link permanente para este título">¶</a></h2>
+<dl class="py class">
+<dt id="database.usuario.Usuario">
+<em class="property">class </em><code class="sig-prename descclassname">database.usuario.</code><code class="sig-name descname">Usuario</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_usuario</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nome</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data_nascimento</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.usuario.Usuario" title="Link permanente para esta definição">¶</a></dt>
+<dd><dl class="py method">
+<dt id="database.usuario.Usuario.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_usuario</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nome</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data_nascimento</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.usuario.Usuario.__init__" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="database.usuario.Usuario.atualizar">
+<code class="sig-name descname">atualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.usuario.Usuario.atualizar" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Atualiza um usuário.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cpf</strong> (<em>str</em>) – CPF do usuário.</p></li>
+<li><p><strong>nome</strong> (<em>str</em>) – Nome do usuário.</p></li>
+<li><p><strong>data_nascimento</strong> (<em>str</em>) – Data de nascimento do usuário</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="database.usuario.Usuario.existe">
+<code class="sig-name descname">existe</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.usuario.Usuario.existe" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Verifica se um usuário existe no banco de dados.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cpf</strong> (<em>str</em>) – CPF do usuário.</p></li>
+<li><p><strong>id_usuario</strong> (<em>str</em>) – Id do usuário no banco de dados.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="database.usuario.Usuario.inserir">
+<code class="sig-name descname">inserir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.usuario.Usuario.inserir" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Insere um usuário no banco de dados.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nome</strong> (<em>str</em>) – Nome do usuário.</p></li>
+<li><p><strong>cpf</strong> (<em>str</em>) – CPF do usuário, aqui devem ser informados apenas os digítos.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>1 se o usuário tiver sido inserido, 0 caso contrário.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 

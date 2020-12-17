@@ -37,7 +37,40 @@ class Usuario(DataBase):
         self.query_string = ""
         if self.__data_nascimento:
             self.query_string = """INSERT INTO USUARIO (NOME, CPF, DATA_NASCIMENTO)
-            values (%(nome)s, %(cpf)s, to_timestamp(%(data_nascimento)s)) RETURNING id_usuario"""
+            values (%(nome)s, %(cpf)s, to_timestamp(%(data_nascimento)s, 'YYYY-MM-DD'))"""
         else:
             self.query_string = """INSERT INTO USUARIO (NOME, CPF) values (%(nome)s, %(cpf)s)"""
         return self.insert()
+
+    @campos_obrigatorios(["cpf"])
+    def atualizar(self):
+        """
+        Atualiza um usuário.
+
+        :param str cpf: CPF do usuário.
+        :param str nome: Nome do usuário.
+        :param str data_nascimento: Data de nascimento do usuário
+        """
+        self.query_string = ""
+        if self.__data_nascimento:
+            self.query_string = "UPDATE USUARIO SET DATA_NASCIMENTO = to_timestamp(%(data_nascimento)s, 'YYYY-MM-DD')"
+        if self.__nome:
+            self.query_string = "UPDATE USUARIO SET NOME = %(nome)s"
+        if self.__data_nascimento and self.__nome:
+            self.query_string = """UPDATE USUARIO SET DATA_NASCIMENTO = to_timestamp(%(data_nascimento)s, 'YYYY-MM-DD'),
+                                NOME = %(nome)s"""
+        self.query_string += " WHERE USUARIO.CPF = %(cpf)s"
+        return True if self.insert() else False
+
+    @campos_obrigatorios(["cpf"])
+    def existe(self):
+        """
+        Verifica se um usuário existe no banco de dados.
+
+        :param str cpf: CPF do usuário.
+        :param str id_usuario: Id do usuário no banco de dados.
+        """
+        self.query_string = "SELECT COUNT(*) FROM USUARIO WHERE USUARIO.CPF = %(cpf)s"
+        if self.__id_usuario:
+            self.query_string += " OR USUARIO.ID_USUARIO = %(id_usuario)s"
+        return True if self.find_one() else False

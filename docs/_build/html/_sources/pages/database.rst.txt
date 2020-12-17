@@ -2,6 +2,7 @@ Database
 ========
 Classes do Banco de Dados com suas respectivas funções.
 
+
 Classe Database
 ---------------
 .. autoclass:: database.DataBase
@@ -9,7 +10,10 @@ Classe Database
    :private-members:
    :special-members:
 
+
 Usuário
 -------
-.. automodule:: database.usuario
+.. autoclass:: database.usuario.Usuario
    :members:
+   :private-members:
+   :special-members:

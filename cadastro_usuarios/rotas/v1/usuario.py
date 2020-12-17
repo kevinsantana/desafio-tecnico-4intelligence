@@ -1,8 +1,9 @@
-from fastapi import APIRouter, Body
+from fastapi import APIRouter, Body, Query
 
 from cadastro_usuarios.modulos import usuario as usr
 from cadastro_usuarios.modelos.usuario import (
-    InserirUsuarioResponse, USER_INSERT_DEFAULT_RESPONSE, Usuario
+    InserirUsuarioResponse, USER_INSERT_DEFAULT_RESPONSE, Usuario, AtualizarUsuarioResponse,
+    USER_UPDATE_DEFAULT_RESPONSE, AtualizarUsuarioRequest
     )
 
 router = APIRouter()
@@ -24,3 +25,11 @@ async def inserir(
     Endpoint para efetuar a gravação de um usuário no banco de dados de forma assíncrona
     """
     return {"resultado": [usr.inserir(**dados_usuario.dict())]}
+
+
+@router.put("/{cpf}", status_code=200, summary="Atualizar um usuário", response_model=AtualizarUsuarioResponse,
+            responses=USER_UPDATE_DEFAULT_RESPONSE)
+def atualizar(cpf: str = Query(..., description="CPF do usuário"),
+              dados_atualizacao: AtualizarUsuarioRequest = Body(..., description="Dados relativos a atualização")):
+    """Atualiza um usuário"""
+    return {"resultado": [usr.atualizar(cpf=cpf, **dados_atualizacao.dict())]}
