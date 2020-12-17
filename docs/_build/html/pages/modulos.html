@@ -169,7 +169,7 @@
 <p>Operações com usuários.</p>
 <span class="target" id="module-modulos.usuario"></span><dl class="py function">
 <dt id="modulos.usuario.atualizar">
-<code class="sig-prename descclassname">modulos.usuario.</code><code class="sig-name descname">atualizar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data_nascimento</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nome</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modulos.usuario.atualizar" title="Link permanente para esta definição">¶</a></dt>
+<code class="sig-prename descclassname">modulos.usuario.</code><code class="sig-name descname">atualizar</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data_nascimento</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nome</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modulos.usuario.atualizar" title="Link permanente para esta definição">¶</a></dt>
 <dd><p>Efetua a atulização no banco de dados referentes as informações do usuário.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parâmetros</dt>
@@ -179,11 +179,14 @@
 <li><p><strong>nome</strong> (<em>str</em>) – Nome do usuário</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return bool</dt>
+<dt class="field-even">Retorna</dt>
 <dd class="field-even"><p>True se o usuário tiver sido atualizado com sucesso, False caso contrário.</p>
 </dd>
-<dt class="field-odd">Levanta</dt>
-<dd class="field-odd"><ul class="simple">
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Levanta</dt>
+<dd class="field-even"><ul class="simple">
 <li><p><strong>FiltroException</strong> – Se nenhum campo for informado para a atualização</p></li>
 <li><p><strong>UsuarioInexistenteException</strong> – Caso o usuário informado não exista no banco de dados.</p></li>
 </ul>
@@ -192,8 +195,28 @@
 </dd></dl>
 
 <dl class="py function">
+<dt id="modulos.usuario.deletar">
+<code class="sig-prename descclassname">modulos.usuario.</code><code class="sig-name descname">deletar</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modulos.usuario.deletar" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Excluí um usuário do banco de dados.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><p><strong>cpf</strong> (<em>str</em>) – CPF do usuário</p>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>True se o usuário tiver sido atualizado com sucesso, False caso contrário.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Levanta</dt>
+<dd class="field-even"><p><strong>UsuarioInexistenteException</strong> – Caso o usuário informado não exista no banco de dados.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt id="modulos.usuario.inserir">
-<code class="sig-prename descclassname">modulos.usuario.</code><code class="sig-name descname">inserir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nome</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data_nascimento</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modulos.usuario.inserir" title="Link permanente para esta definição">¶</a></dt>
+<code class="sig-prename descclassname">modulos.usuario.</code><code class="sig-name descname">inserir</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">nome</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data_nascimento</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modulos.usuario.inserir" title="Link permanente para esta definição">¶</a></dt>
 <dd><p>Insere um usuário no banco de dados, verificando se o cpf é consistente.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parâmetros</dt>
@@ -203,11 +226,14 @@
 <li><p><strong>data_nascimento</strong> (<em>str</em>) – Data de nascimento do usuário.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return bool</dt>
+<dt class="field-even">Retorna</dt>
 <dd class="field-even"><p>True se o usuário tiver sido inserido com sucesso, False caso contrário.</p>
 </dd>
-<dt class="field-odd">Levanta</dt>
-<dd class="field-odd"><p><strong>CpfInvalidoException</strong> – O CPF informado não é válido.</p>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Levanta</dt>
+<dd class="field-even"><p><strong>CpfInvalidoException</strong> – O CPF informado não é válido.</p>
 </dd>
 </dl>
 </dd></dl>

@@ -3,7 +3,8 @@ from fastapi import APIRouter, Body, Query
 from cadastro_usuarios.modulos import usuario as usr
 from cadastro_usuarios.modelos.usuario import (
     InserirUsuarioResponse, USER_INSERT_DEFAULT_RESPONSE, Usuario, AtualizarUsuarioResponse,
-    USER_UPDATE_DEFAULT_RESPONSE, AtualizarUsuarioRequest
+    USER_UPDATE_DEFAULT_RESPONSE, AtualizarUsuarioRequest, DeletarUsuarioResponse,
+    USER_DELETE_DEFAULT_RESPONSE
     )
 
 router = APIRouter()
@@ -33,3 +34,9 @@ def atualizar(cpf: str = Query(..., description="CPF do usuário"),
               dados_atualizacao: AtualizarUsuarioRequest = Body(..., description="Dados relativos a atualização")):
     """Atualiza um usuário"""
     return {"resultado": [usr.atualizar(cpf=cpf, **dados_atualizacao.dict())]}
+
+
+@router.delete("/{cpf}", status_code=200, summary="Deleta um usuário",
+               response_model=DeletarUsuarioResponse, responses=USER_DELETE_DEFAULT_RESPONSE)
+def deletar(cpf: str = Query(..., description="CPF do usuário")):
+    return {"resultado": [usr.deletar(cpf=cpf)]}

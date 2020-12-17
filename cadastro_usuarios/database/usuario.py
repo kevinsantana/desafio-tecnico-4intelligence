@@ -49,7 +49,9 @@ class Usuario(DataBase):
 
         :param str cpf: CPF do usuário.
         :param str nome: Nome do usuário.
-        :param str data_nascimento: Data de nascimento do usuário
+        :param str data_nascimento: Data de nascimento do usuário.
+        :return: True se a operação for exeutada com sucesso, False caso contrário.
+        :rtype: bool
         """
         self.query_string = ""
         if self.__data_nascimento:
@@ -69,8 +71,23 @@ class Usuario(DataBase):
 
         :param str cpf: CPF do usuário.
         :param str id_usuario: Id do usuário no banco de dados.
+        :return: True se a operação for exeutada com sucesso, False caso contrário.
+        :rtype: bool
         """
         self.query_string = "SELECT COUNT(*) FROM USUARIO WHERE USUARIO.CPF = %(cpf)s"
         if self.__id_usuario:
             self.query_string += " OR USUARIO.ID_USUARIO = %(id_usuario)s"
-        return True if self.find_one() else False
+        return True if self.find_one()[0] else False
+
+    @campos_obrigatorios(["cpf"])
+    def deletar(self):
+        """
+        Deleta um usuário do banco de dados.
+
+        :param str cpf: CPF do usuário.
+        :param str id_usuario: Id do usuário no banco de dados.
+        :return: True se a operação for exeutada com sucesso, False caso contrário.
+        :rtype: bool
+        """
+        self.query_string = "DELETE FROM USUARIO WHERE USUARIO.CPF = %(cpf)s"
+        return True if self.insert() else False
