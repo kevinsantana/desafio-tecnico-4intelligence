@@ -9,10 +9,20 @@ Verifica o estado de saúde da API.
 .. automodule:: modulos.healthcheck
    :members:
 
+
 Usuário
 -------
 
-Operações com usuários.
+Funções para manter usuário.
 
 .. automodule:: modulos.usuario
+   :members:
+
+
+Endereço
+--------
+
+Funções para manter endereço.
+
+.. automodule:: modulos.endereco
    :members:

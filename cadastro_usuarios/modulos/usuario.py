@@ -1,14 +1,14 @@
 import re
 import functools
 
-from cadastro_usuarios.database.usuario import Usuario
+from cadastro_usuarios.database.usuario import Usuario, ListarUsuario
 from cadastro_usuarios.excecoes.usuario import (
     CpfInvalidoException, UsuarioJaCadastradoException, UsuarioInexistenteException,
     FiltroException
     )
 
 
-def __limpa_cpf(cpf):
+def _limpa_cpf(cpf):
     def decorator_limpa_cpf(func):
         @functools.wraps(func)
         def wrapper_limpa_cpf(*args, **kwargs):
@@ -24,6 +24,9 @@ def __cpf_eh_valido(*, cpf: str):
     http://www.receita.fazenda.gov.br/aplicacoes/atcta/cpf/funcoes.js
 
     :param str cpf: CPF a se verificar a consistência.
+    :return: True se o CPF for consistente, isto é, segue as regras do Ministério \
+    da Fazenda para composição de um CPF.
+    :rtype: bool
     """
     digitos_cpf, digito_verificador1, digito_verificador2 = list(map(int, cpf[:9])), int(cpf[9]), int(cpf[10])
     resultado_primeiro_digito = sum(map(lambda x: x[0]*x[1], zip(range(1, 10), digitos_cpf))) % 11
@@ -36,7 +39,7 @@ def __cpf_eh_valido(*, cpf: str):
     return True if segundo_digito_verificador == digito_verificador2 else False
 
 
-@__limpa_cpf("cpf")
+@_limpa_cpf("cpf")
 def inserir(*, nome: str, cpf: str, data_nascimento: str = None):
     """
     Insere um usuário no banco de dados, verificando se o cpf é consistente.
@@ -53,13 +56,13 @@ def inserir(*, nome: str, cpf: str, data_nascimento: str = None):
     cpfs_invalidos = {"00000000000", "11111111111", "22222222222", "33333333333",
                       "44444444444", "55555555555", "66666666666", "77777777777",
                       "88888888888", "99999999999"}
-    if cpf in cpfs_invalidos or len(cpf) < 11 or __cpf_eh_valido(cpf=cpf) is False:
+    if cpf in cpfs_invalidos or len(cpf) != 11 or __cpf_eh_valido(cpf=cpf) is False:
         raise CpfInvalidoException(416, cpf)
     insercao = Usuario(nome=nome, cpf=cpf, data_nascimento=data_nascimento).inserir()
     return True if insercao else False
 
 
-@__limpa_cpf("cpf")
+@_limpa_cpf("cpf")
 def atualizar(*, cpf: str, data_nascimento: str = None, nome: str = None):
     """
     Efetua a atulização no banco de dados referentes as informações do usuário.
@@ -80,17 +83,35 @@ def atualizar(*, cpf: str, data_nascimento: str = None, nome: str = None):
         raise UsuarioInexistenteException(404, cpf)
 
 
-@__limpa_cpf("cpf")
+@_limpa_cpf("cpf")
 def deletar(*, cpf: str):
     """
     Excluí um usuário do banco de dados.
 
     :param str cpf: CPF do usuário
-    :return: True se o usuário tiver sido atualizado com sucesso, False caso contrário.
+    :return: True se a operação for executada com sucesso, False caso contrário.
     :rtype: bool
     :raises UsuarioInexistenteException: Caso o usuário informado não exista no banco de dados.
     """
     if Usuario(cpf=cpf).existe():
         return Usuario(cpf=cpf).deletar()
+    else:
+        raise UsuarioInexistenteException(404, cpf)
+
+
+@_limpa_cpf("cpf")
+def listar_um(*, cpf: str):
+    """
+    Lista as informações de um usuário no banco de dados.
+
+    :param str cpf: CPF do usuário buscado.
+    :return: Informações do usuário buscado.
+    :rtype: dict
+    :raises UsuarioInexistenteException: Caso o usuário informado não exista no banco de dados.
+    """
+    if Usuario(cpf=cpf).existe():
+        usuario = ListarUsuario(cpf=cpf).listar_um()
+        usuario.data_nascimento = str(usuario.data_nascimento) if usuario.data_nascimento else usuario.data_nascimento
+        return usuario.dict()
     else:
         raise UsuarioInexistenteException(404, cpf)
