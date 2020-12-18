@@ -1,0 +1,5 @@
+build.sh
+.git
+.gitignore
+*.txt
+.vscode

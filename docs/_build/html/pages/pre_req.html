@@ -1,0 +1,246 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Prerequisites &mdash; Desafio Técnico 4intelligence - Cadastro Clientes</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Índice"
+              href="../genindex.html"/>
+        <link rel="search" title="Buscar" href="../search.html"/>
+    <link rel="top" title="Desafio Técnico 4intelligence - Cadastro Clientes" href="../index.html"/>
+        <link rel="next" title="Instalação e Execução" href="instalacao.html"/>
+        <link rel="prev" title="Bem vindo à documentação do Cadastro de Usuários!" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Desafio Técnico 4intelligence - Cadastro de Usuários
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Documentação básica</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instalacao.html">Instalação e Execução</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Executando testes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feito_com.html">Construído Com</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploy.html">Deploy</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentação do Código</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modulos.html#healthcheck">Healthcheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modulos.html#usuario">Usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modulos.html#endereco">Endereço</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="database.html#classe-database">Classe Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#usuario">Usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#listar-usuario">Listar Usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#endereco">Endereço</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#local-publico">Local Público</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#localizacao">Localização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#unidade-federativa">Unidade Federativa</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Desafio Técnico 4intelligence - Cadastro de Usuários</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Prerequisites</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/pages/pre_req.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="prerequisites">
+<h1>Prerequisites<a class="headerlink" href="#prerequisites" title="Link permanente para este título">¶</a></h1>
+<p>Caso o desenvolvedor opte por executar a solução de forma não <em>dockerizada</em>, sugere-se a criação de um ambiente virtual para instalação das dependências da aplicação, como por exemplo o <a class="reference external" href="https://virtualenvwrapper.readthedocs.io/en/latest/">virtualenvwrapper</a>.</p>
+<p>Para instalar as dependências do projeto, execute:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 install -e .
+</pre></div>
+</div>
+<p>Além disso, é preciso inicializar os softwares de dependência, são eles:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.postgresql.org"><code class="docutils literal notranslate"><span class="pre">PostgreSQL</span></code></a>: Banco de dados relacional para manter um usuário.</p></li>
+<li><p><a class="reference external" href="https://www.pgadmin.org"><code class="docutils literal notranslate"><span class="pre">PGAdmin</span></code></a>: Permite a comunicação com o banco de dados <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span></code> através de uma interface gráfica, exposta por uma URL.</p></li>
+</ul>
+<p>No cenário em que o desevolvedor opte por executar a aplicação de forma <em>dockerizada</em>(recomendada) é preciso possuir o <a class="reference external" href="https://docs.docker.com/">docker</a> e o <a class="reference external" href="https://docs.docker.com/compose/">docker-compose</a> instalados.</p>
+<p>As variáveis de ambiente listadas abaixo devem estar exportadas no terminal para serem consumidas através do <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code>, conforme instruções do passo seguinte <code class="docutils literal notranslate"><span class="pre">Instalação</span> <span class="pre">e</span> <span class="pre">Execução</span></code>. Enquanto o valor das variáveis mudam conforme a necessidade de execução, os nomes devem permanecer os mesmos, são eles:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PGADMIN_DEFAULT_EMAIL</span></code>: <em>email</em> utilizado no momento de criação do container <code class="docutils literal notranslate"><span class="pre">PGAdim</span></code> permitindo o login;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PGADMIN_DEFAULT_PASSWORD</span></code>: <em>password</em> utilizado no momento de execução do container <code class="docutils literal notranslate"><span class="pre">PGAdim</span></code> permitindo o login;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">POSTGRES_DB</span></code>: Nome do banco de dados utilizado para criação do banco de dados, consumido pelo container do banco de dados;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">POSTGRES_USER</span></code>: Usuário do banco de dados utilizado para criação do banco de dados, consumido pelo container do banco de dados;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">POSTGRES_PASSWORD</span></code>: Senha do banco de dados utilizado para criação do banco de dados, consumido pelo container do banco de dados.</p></li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="instalacao.html" class="btn btn-neutral float-right" title="Instalação e Execução" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="Bem vindo à documentação do Cadastro de Usuários!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Kevin de Santana Araujo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

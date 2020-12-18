@@ -1,0 +1,394 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Módulos &mdash; Desafio Técnico 4intelligence - Cadastro Clientes</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Índice"
+              href="../genindex.html"/>
+        <link rel="search" title="Buscar" href="../search.html"/>
+    <link rel="top" title="Desafio Técnico 4intelligence - Cadastro Clientes" href="../index.html"/>
+        <link rel="next" title="Database" href="database.html"/>
+        <link rel="prev" title="Deploy" href="deploy.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Desafio Técnico 4intelligence - Cadastro de Usuários
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Documentação básica</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pre_req.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instalacao.html">Instalação e Execução</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Executando testes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feito_com.html">Construído Com</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploy.html">Deploy</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentação do Código</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Módulos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#healthcheck">Healthcheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usuario">Usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#endereco">Endereço</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="database.html#classe-database">Classe Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#usuario">Usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#listar-usuario">Listar Usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#endereco">Endereço</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#local-publico">Local Público</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#localizacao">Localização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html#unidade-federativa">Unidade Federativa</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Desafio Técnico 4intelligence - Cadastro de Usuários</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Módulos</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/pages/modulos.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="modulos">
+<h1>Módulos<a class="headerlink" href="#modulos" title="Link permanente para este título">¶</a></h1>
+<div class="section" id="healthcheck">
+<h2>Healthcheck<a class="headerlink" href="#healthcheck" title="Link permanente para este título">¶</a></h2>
+<p>Verifica o estado de saúde da API.</p>
+<span class="target" id="module-modulos.healthcheck"></span><dl class="py function">
+<dt id="modulos.healthcheck.health_condition">
+<code class="sig-prename descclassname">modulos.healthcheck.</code><code class="sig-name descname">health_condition</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#modulos.healthcheck.health_condition" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Informa o estado de saúde da aplicação. O objetivo é prover um padrão de     estrutura de arquivos do projeto.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Retorna</dt>
+<dd class="field-odd"><p>Lista com o estado de saúde para a aplicação.</p>
+</dd>
+<dt class="field-even">Tipo de retorno</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="usuario">
+<h2>Usuário<a class="headerlink" href="#usuario" title="Link permanente para este título">¶</a></h2>
+<p>Funções para manter usuário.</p>
+<span class="target" id="module-modulos.usuario"></span><dl class="py function">
+<dt id="modulos.usuario.atualizar">
+<code class="sig-prename descclassname">modulos.usuario.</code><code class="sig-name descname">atualizar</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data_nascimento</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nome</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modulos.usuario.atualizar" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Efetua a atulização no banco de dados referentes as informações do usuário.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cpf</strong> (<em>str</em>) – CPF do usuário</p></li>
+<li><p><strong>data_nascimento</strong> (<em>str</em>) – Data de nascimento do usuário, em formato timestamp.</p></li>
+<li><p><strong>nome</strong> (<em>str</em>) – Nome do usuário</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>True se o usuário tiver sido atualizado com sucesso, False caso contrário.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Levanta</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>FiltroException</strong> – Se nenhum campo for informado para a atualização</p></li>
+<li><p><strong>UsuarioInexistenteException</strong> – Caso o usuário informado não exista no banco de dados.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="modulos.usuario.deletar">
+<code class="sig-prename descclassname">modulos.usuario.</code><code class="sig-name descname">deletar</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modulos.usuario.deletar" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Excluí um usuário do banco de dados.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><p><strong>cpf</strong> (<em>str</em>) – CPF do usuário</p>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>True se a operação for executada com sucesso, False caso contrário.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Levanta</dt>
+<dd class="field-even"><p><strong>UsuarioInexistenteException</strong> – Caso o usuário informado não exista no banco de dados.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="modulos.usuario.inserir">
+<code class="sig-prename descclassname">modulos.usuario.</code><code class="sig-name descname">inserir</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">nome</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">data_nascimento</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modulos.usuario.inserir" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Insere um usuário no banco de dados, verificando se o cpf é consistente.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nome</strong> (<em>str</em>) – Nome do usuário.</p></li>
+<li><p><strong>cpf</strong> (<em>str</em>) – CPF do usuário, aqui devem ser informados apenas os digítos.</p></li>
+<li><p><strong>data_nascimento</strong> (<em>str</em>) – Data de nascimento do usuário.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>True se o usuário tiver sido inserido com sucesso, False caso contrário.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Levanta</dt>
+<dd class="field-even"><p><strong>CpfInvalidoException</strong> – O CPF informado não é válido.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="modulos.usuario.listar_um">
+<code class="sig-prename descclassname">modulos.usuario.</code><code class="sig-name descname">listar_um</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modulos.usuario.listar_um" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Lista as informações de um usuário no banco de dados.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><p><strong>cpf</strong> (<em>str</em>) – CPF do usuário buscado.</p>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>Informações do usuário buscado.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Levanta</dt>
+<dd class="field-even"><p><strong>UsuarioInexistenteException</strong> – Caso o usuário informado não exista no banco de dados.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="endereco">
+<h2>Endereço<a class="headerlink" href="#endereco" title="Link permanente para este título">¶</a></h2>
+<p>Funções para manter endereço.</p>
+<span class="target" id="module-modulos.endereco"></span><dl class="py function">
+<dt id="modulos.endereco.inserir">
+<code class="sig-prename descclassname">modulos.endereco.</code><code class="sig-name descname">inserir</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">cep</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">rua</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">bairro</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">cidade</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">uf</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">estado</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">numero</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">id_usuario</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modulos.endereco.inserir" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Insere o endereço de um usuário no banco de dados. O endereço foi desmembrado     em outras tabelas para que fosse possível cadastra mais de um endereço para um     usuário (histórico de mudanças), associar um mesmo endereço a usuários diferentes     (usuários que residem na mesma casa) e rua, bairro e cidades que compartilham o mesmo     nome em UFs diferentes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cpf</strong> (<em>str</em>) – CPF do usuário.</p></li>
+<li><p><strong>cep</strong> – CEP da residência do usuário.</p></li>
+<li><p><strong>rua</strong> – Rua do usuário.</p></li>
+<li><p><strong>bairro</strong> – Bairro do usuário.</p></li>
+<li><p><strong>cidade</strong> (<em>str</em>) – Cidade do usuário.</p></li>
+<li><p><strong>uf</strong> (<em>str</em>) – UF do endereço do usuário.</p></li>
+<li><p><strong>estado</strong> (<em>str</em>) – Estado do usuário.</p></li>
+<li><p><strong>numero</strong> (<em>int</em>) – Número da casa/apartamento do usuário. Nulo permitindo os     casos em que uma residência não possuí número, i.e, sem número (s/n).</p></li>
+<li><p><strong>id_usuario</strong> (<em>int</em>) – Alternantiva ao CPF do usuário, para cadastro do endereço.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>True se o endereço for associado ao usuário, False caso contrário.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="modulos.endereco.validar_cep">
+<code class="sig-prename descclassname">modulos.endereco.</code><code class="sig-name descname">validar_cep</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">cep</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#modulos.endereco.validar_cep" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Consulta se o cep é válido e retorna as suas informações. A consulta é feita     através de uma requisição fora do projeto.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><p><strong>cep</strong> (<em>str</em>) – Cep buscado.</p>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>Dados da localização do CEP, caso seja válido</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Levanta</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>CepInvalidoException</strong> – Se o CEP for inválido</p></li>
+<li><p><strong>ServicoException</strong> – Se o serviço consumido para consulta esteja indisponível     ou, ainda, não for possível efetuar uma requisição.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="database.html" class="btn btn-neutral float-right" title="Database" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="deploy.html" class="btn btn-neutral" title="Deploy" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Kevin de Santana Araujo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

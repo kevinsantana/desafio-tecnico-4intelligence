@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Database &mdash; Desafio Técnico 4intelligence - Cadastro Clientes</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Índice"
+              href="../genindex.html"/>
+        <link rel="search" title="Buscar" href="../search.html"/>
+    <link rel="top" title="Desafio Técnico 4intelligence - Cadastro Clientes" href="../index.html"/>
+        <link rel="prev" title="Módulos" href="modulos.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Desafio Técnico 4intelligence - Cadastro de Usuários
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Documentação básica</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pre_req.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instalacao.html">Instalação e Execução</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Executando testes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feito_com.html">Construído Com</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploy.html">Deploy</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Documentação do Código</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modulos.html#healthcheck">Healthcheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modulos.html#usuario">Usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modulos.html#endereco">Endereço</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#classe-database">Classe Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usuario">Usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#listar-usuario">Listar Usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#endereco">Endereço</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-publico">Local Público</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#localizacao">Localização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unidade-federativa">Unidade Federativa</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Desafio Técnico 4intelligence - Cadastro de Usuários</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Database</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/pages/database.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="database">
+<h1>Database<a class="headerlink" href="#database" title="Link permanente para este título">¶</a></h1>
+<p>Classes do Banco de Dados com suas respectivas funções.</p>
+<div class="section" id="classe-database">
+<h2>Classe Database<a class="headerlink" href="#classe-database" title="Link permanente para este título">¶</a></h2>
+<dl class="py class">
+<dt id="database.DataBase">
+<em class="property">class </em><code class="sig-prename descclassname">database.</code><code class="sig-name descname">DataBase</code><a class="headerlink" href="#database.DataBase" title="Link permanente para esta definição">¶</a></dt>
+<dd><dl class="py attribute">
+<dt id="database.DataBase.__weakref__">
+<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#database.DataBase.__weakref__" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="usuario">
+<h2>Usuário<a class="headerlink" href="#usuario" title="Link permanente para este título">¶</a></h2>
+<dl class="py class">
+<dt id="database.usuario.Usuario">
+<em class="property">class </em><code class="sig-prename descclassname">database.usuario.</code><code class="sig-name descname">Usuario</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_usuario</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nome</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data_nascimento</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.usuario.Usuario" title="Link permanente para esta definição">¶</a></dt>
+<dd><dl class="py method">
+<dt id="database.usuario.Usuario.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_usuario</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nome</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data_nascimento</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.usuario.Usuario.__init__" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="database.usuario.Usuario.atualizar">
+<code class="sig-name descname">atualizar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.usuario.Usuario.atualizar" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Atualiza um usuário.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cpf</strong> (<em>str</em>) – CPF do usuário.</p></li>
+<li><p><strong>nome</strong> (<em>str</em>) – Nome do usuário.</p></li>
+<li><p><strong>data_nascimento</strong> (<em>str</em>) – Data de nascimento do usuário.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>True se a operação for exeutada com sucesso, False caso contrário.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="database.usuario.Usuario.buscar_id">
+<code class="sig-name descname">buscar_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.usuario.Usuario.buscar_id" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Busca o id do usuário no banco de dados a partir do cpf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><p><strong>cpf</strong> (<em>str</em>) – CPF do usuário.</p>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>Id do usuário.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="database.usuario.Usuario.deletar">
+<code class="sig-name descname">deletar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.usuario.Usuario.deletar" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Deleta um usuário do banco de dados.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cpf</strong> (<em>str</em>) – CPF do usuário.</p></li>
+<li><p><strong>id_usuario</strong> (<em>str</em>) – Id do usuário no banco de dados.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>True se a operação for exeutada com sucesso, False caso contrário.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="database.usuario.Usuario.existe">
+<code class="sig-name descname">existe</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.usuario.Usuario.existe" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Verifica se um usuário existe no banco de dados.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cpf</strong> (<em>str</em>) – CPF do usuário.</p></li>
+<li><p><strong>id_usuario</strong> (<em>str</em>) – Id do usuário no banco de dados.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>True se a operação for exeutada com sucesso, False caso contrário.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="database.usuario.Usuario.inserir">
+<code class="sig-name descname">inserir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.usuario.Usuario.inserir" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Insere um usuário no banco de dados.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nome</strong> (<em>str</em>) – Nome do usuário.</p></li>
+<li><p><strong>cpf</strong> (<em>str</em>) – CPF do usuário, aqui devem ser informados apenas os digítos.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>True se a operação for exeutada com sucesso, False caso contrário.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="listar-usuario">
+<h2>Listar Usuário<a class="headerlink" href="#listar-usuario" title="Link permanente para este título">¶</a></h2>
+<dl class="py class">
+<dt id="database.usuario.ListarUsuario">
+<em class="property">class </em><code class="sig-prename descclassname">database.usuario.</code><code class="sig-name descname">ListarUsuario</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nome</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data_nascimento</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rua</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">numero</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cep</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cidade</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bairro</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">uf</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">descricao</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.usuario.ListarUsuario" title="Link permanente para esta definição">¶</a></dt>
+<dd><dl class="py method">
+<dt id="database.usuario.ListarUsuario.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nome</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cpf</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data_nascimento</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rua</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">numero</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cep</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cidade</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bairro</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">uf</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">descricao</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.usuario.ListarUsuario.__init__" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="database.usuario.ListarUsuario.listar_um">
+<code class="sig-name descname">listar_um</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.usuario.ListarUsuario.listar_um" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Lista as informações de um usuário.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><p><strong>cpf</strong> (<em>str</em>) – CPF do usuário.</p>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>Informações do usuário buscado.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#database.usuario.ListarUsuario" title="database.usuario.ListarUsuario">ListarUsuario</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="endereco">
+<h2>Endereço<a class="headerlink" href="#endereco" title="Link permanente para este título">¶</a></h2>
+<dl class="py class">
+<dt id="database.endereco.Endereco">
+<em class="property">class </em><code class="sig-prename descclassname">database.endereco.</code><code class="sig-name descname">Endereco</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_endereco</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">id_uf</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">id_localizacao</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">id_usuario</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.endereco.Endereco" title="Link permanente para esta definição">¶</a></dt>
+<dd><dl class="py method">
+<dt id="database.endereco.Endereco.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_endereco</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">id_uf</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">id_localizacao</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">id_usuario</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.endereco.Endereco.__init__" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="database.endereco.Endereco.inserir">
+<code class="sig-name descname">inserir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.endereco.Endereco.inserir" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Insere um endereço no banco de dados. A associação de usuário, uf e local         público qualifica um endereço, assim, permitindo a inserção de mais de        um local para um mesmo usuário e um mesmo endereço para usuário diferentes         (caso em que dois usuários residem no mesmo endereço).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id_uf</strong> (<em>str</em>) – Id da uf no banco de dados.</p></li>
+<li><p><strong>id_localizacao</strong> (<em>str</em>) – Id da localização no banco de dados.</p></li>
+<li><p><strong>id_usuario</strong> (<em>str</em>) – Id do usuário no banco de dados.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>True se a operação for exeutada com sucesso, False caso contrário.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="local-publico">
+<h2>Local Público<a class="headerlink" href="#local-publico" title="Link permanente para este título">¶</a></h2>
+<dl class="py class">
+<dt id="database.local_publico.LocalPublico">
+<em class="property">class </em><code class="sig-prename descclassname">database.local_publico.</code><code class="sig-name descname">LocalPublico</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_uf</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">id_localizacao</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.local_publico.LocalPublico" title="Link permanente para esta definição">¶</a></dt>
+<dd><dl class="py method">
+<dt id="database.local_publico.LocalPublico.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_uf</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">id_localizacao</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.local_publico.LocalPublico.__init__" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="database.local_publico.LocalPublico.inserir">
+<code class="sig-name descname">inserir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.local_publico.LocalPublico.inserir" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Insere um local público no banco dados.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id_uf</strong> (<em>str</em>) – Id da Uf.</p></li>
+<li><p><strong>id_localizacao</strong> (<em>str</em>) – Id da localização.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>True se a operação for exeutada com sucesso, False caso contrário.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="localizacao">
+<h2>Localização<a class="headerlink" href="#localizacao" title="Link permanente para este título">¶</a></h2>
+<dl class="py class">
+<dt id="database.localizacao.Localizacao">
+<em class="property">class </em><code class="sig-prename descclassname">database.localizacao.</code><code class="sig-name descname">Localizacao</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_localizacao</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rua</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">numero</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cep</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cidade</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bairro</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.localizacao.Localizacao" title="Link permanente para esta definição">¶</a></dt>
+<dd><dl class="py method">
+<dt id="database.localizacao.Localizacao.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_localizacao</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rua</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">numero</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cep</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cidade</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bairro</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.localizacao.Localizacao.__init__" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="database.localizacao.Localizacao.buscar_id">
+<code class="sig-name descname">buscar_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.localizacao.Localizacao.buscar_id" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna o id da uf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><p><strong>uf</strong> (<em>str</em>) – Uf do Estado</p>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>Id da uf no banco de dados.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="database.localizacao.Localizacao.inserir">
+<code class="sig-name descname">inserir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.localizacao.Localizacao.inserir" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Insere uma localização no banco dados. O endereço foi desmembrado em outras         duas tabelas para que fosse possível associar mais de um endereço ao usuário         e permitir que um mesmo nome de rua, cidade ou até bairro exista em mais de uma         uf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rua</strong> (<em>str</em>) – Rua da localização.</p></li>
+<li><p><strong>cep</strong> (<em>str</em>) – Cep da localização.</p></li>
+<li><p><strong>cidade</strong> (<em>str</em>) – Cidade da localização.</p></li>
+<li><p><strong>bairro</strong> (<em>str</em>) – Bairro da localização.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>True se a operação for exeutada com sucesso, False caso contrário.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="unidade-federativa">
+<h2>Unidade Federativa<a class="headerlink" href="#unidade-federativa" title="Link permanente para este título">¶</a></h2>
+<dl class="py class">
+<dt id="database.uf.DominioUf">
+<em class="property">class </em><code class="sig-prename descclassname">database.uf.</code><code class="sig-name descname">DominioUf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_uf</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">uf</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">descricao</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.uf.DominioUf" title="Link permanente para esta definição">¶</a></dt>
+<dd><dl class="py method">
+<dt id="database.uf.DominioUf.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_uf</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">uf</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">descricao</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.uf.DominioUf.__init__" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="database.uf.DominioUf.buscar_estado">
+<code class="sig-name descname">buscar_estado</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.uf.DominioUf.buscar_estado" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna o estado da uf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><p><strong>uf</strong> (<em>str</em>) – Uf do Estado</p>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>Estado que a uf representa.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="database.uf.DominioUf.buscar_id">
+<code class="sig-name descname">buscar_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#database.uf.DominioUf.buscar_id" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna o id da uf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parâmetros</dt>
+<dd class="field-odd"><p><strong>uf</strong> (<em>str</em>) – Uf do Estado</p>
+</dd>
+<dt class="field-even">Retorna</dt>
+<dd class="field-even"><p>Id da uf no banco de dados.</p>
+</dd>
+<dt class="field-odd">Tipo de retorno</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="modulos.html" class="btn btn-neutral" title="Módulos" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Kevin de Santana Araujo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
