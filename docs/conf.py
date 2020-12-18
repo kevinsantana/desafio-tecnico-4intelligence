@@ -61,7 +61,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # a list of builtin themes.
 #
 html_theme = "sphinx_rtd_theme"
-html_title = "Desafio Técnico Juntos Somos Mais - Cadastro Clientes"
+html_title = "Desafio Técnico 4intelligence - Cadastro Clientes"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

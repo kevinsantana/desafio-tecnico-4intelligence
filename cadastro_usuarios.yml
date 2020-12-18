@@ -1,0 +1,55 @@
+version: "3.5"
+
+services:
+  db_cadastro_usuarios:
+    container_name: db_cadastro_usuarios
+    image: postgres:12
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    ports:
+      - "15432:5432"
+    volumes:
+      - /data/var/lib/postgresql/data/:/var/lib/postgresql/data/
+    networks:
+      - cadastro-usuarios-network
+
+  pgadmin_cadastro:
+    container_name: pgadmin_cadastro
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL
+      - PGADMIN_DEFAULT_PASSWORD
+    ports:
+      - "8032:80"
+    depends_on:
+      - db_cadastro_usuarios
+    networks:
+      - cadastro-usuarios-network
+  
+  cadastro_usuarios:
+    container_name: cadastro_usuarios
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cadastro_usuarios:0.1.0
+    environment:
+      - PGSQL_DB
+      - PGSQL_HOST
+      - PGSQL_PASS
+      - PGSQL_USR
+      - PGSQL_PORT      
+    volumes:
+      - .:/deploy
+    ports:
+      - "3000:3000"
+    networks:
+      - cadastro-usuarios-network
+    depends_on:
+      - db_cadastro_usuarios
+
+networks:
+  cadastro-usuarios-network:
+    name: cadastro-usuarios-network
+    driver: bridge
