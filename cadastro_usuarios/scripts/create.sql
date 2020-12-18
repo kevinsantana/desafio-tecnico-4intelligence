@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS public.USUARIO (
 CREATE TABLE IF NOT EXISTS public.DOMINIO_UF (
   ID_UF SERIAL PRIMARY KEY,
   UF CHAR(2) NOT NULL UNIQUE,
-  DESCRICAO VARCHAR(30) NOT NULL UNIQUE
+  ESTADO VARCHAR(30) NOT NULL UNIQUE
   );
 
 
@@ -88,7 +88,7 @@ CREATE INDEX ID_USUARIO_INDEX ON public.ENDERECO (ID_USUARIO);
 -- -----------------------------------------------------
 -- INSERT DOMINIO_UF
 -- -----------------------------------------------------
-INSERT INTO public.DOMINIO_UF (UF, DESCRICAO)
+INSERT INTO public.DOMINIO_UF (UF, ESTADO)
 VALUES 
     ('AC', 'ACRE'),
     ('AL', 'ALAGOAS'),

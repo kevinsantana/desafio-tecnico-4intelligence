@@ -11,7 +11,7 @@ class Endereco(BaseModel):
     bairro: str = Field(description="Bairro do endereço")
     cidade: str = Field(description="Cidade do endereço")
     uf: str = Field(description="uf do endereço")
-    descricao: str = Field(description="Estado do endereço")
+    estado: str = Field(description="Estado do endereço")
 
 
 class BuscarCepResponse(BaseModel):
@@ -23,7 +23,23 @@ class InserirEnderecoResquest(Endereco):
 
 
 class InserirEnderecoResponse(BaseModel):
-    resultado: List[bool] = Field(..., description="Dados do cep buscado")
+    resultado: List[bool] = Field(..., description="Informa se o endereço foi ou não inserido")
+
+
+class AtualizarEnderecoRequest(BaseModel):
+    cep: Optional[str] = Field(description="CEP do endereço")
+    rua: Optional[str] = Field(description="Rua do endereço")
+    numero: Optional[str] = Field(description="Número da casa/apartamento")
+    bairro: Optional[str] = Field(description="Bairro do endereço")
+    cidade: Optional[str] = Field(description="Cidade do endereço")
+
+
+class AtualizarEnderecoResponse(BaseModel):
+    resultado: List[bool] = Field(..., description="Informa se o endereço foi ou não atualizado")
+
+
+class DeletarEnderecoResponse(BaseModel):
+    resultado: List[bool] = Field(..., description="Informa se o endereço foi ou não deletado")
 
 
 BUSCAR_ENDERECO_DEFAULT_RESPONSE = parse_openapi([
@@ -33,3 +49,13 @@ BUSCAR_ENDERECO_DEFAULT_RESPONSE = parse_openapi([
             stacktrace="Traceback (most recent call last): ...")
 ])
 INSERIR_ENDERECO_DEFAULT_RESPONSE = parse_openapi()
+ATUALIZAR_ENDERECO_DEFAULT_RESPONSE = parse_openapi([
+    Message(status=416, mensagem="Nenhum dado foi fornecido para alteração",
+            stacktrace="Traceback (most recent call last): ..."),
+    Message(status=404, mensagem="O usuário não existe",
+            stacktrace="Traceback (most recent call last): ...")
+])
+DELETAR_ENDERECO_DEFAULT_RESPONSE = parse_openapi([
+    Message(status=404, mensagem="O usuário não existe",
+            stacktrace="Traceback (most recent call last): ...")
+])

@@ -2,10 +2,10 @@ from cadastro_usuarios.database import DataBase, campos_obrigatorios
 
 
 class DominioUf(DataBase):
-    def __init__(self, id_uf: int = None, uf: str = None, descricao: str = None):
+    def __init__(self, id_uf: int = None, uf: str = None, estado: str = None):
         self.__id_uf = id_uf
         self.__uf = uf
-        self.__descricao = descricao
+        self.__estado = estado
 
     @property
     def id_uf(self):
@@ -16,8 +16,8 @@ class DominioUf(DataBase):
         return self.__uf
 
     @property
-    def descricao(self):
-        return self.__descricao
+    def estado(self):
+        return self.__estado
 
     def dict(self):
         return {key.replace("_DominioUf__", ""): value for key, value in self.__dict__.items() if value}
@@ -31,7 +31,7 @@ class DominioUf(DataBase):
         :return: Estado que a uf representa.
         :rtype: str
         """
-        self.query_string = "SELECT DESCRICAO FROM DOMINIO_UF WHERE DOMINIO_UF.UF = %(uf)s"
+        self.query_string = "SELECT ESTADO FROM DOMINIO_UF WHERE DOMINIO_UF.UF = %(uf)s"
         return self.find_one()
 
     @campos_obrigatorios(["uf"])

@@ -1,23 +1,23 @@
 from math import ceil
 
 
-def mount_pagination(data: list, qtd: int, offset: int, total: int, url: str) -> dict:
-    total = ceil(total/qtd)
-    pagination = {"result": data, "pagination": {
-        "next": "", "previous": "", "first": "", "last": "", "total": total
+def montar_paginacao(dados: list, quantidade: int, pagina: int, total: int, url: str) -> dict:
+    total = ceil(total/quantidade)
+    resposta = {"resultado": dados, "paginacao": {
+        "proxima": "", "anterior": "", "primeira": "", "ultima": "", "total": total
     }}
     endpoint, params = url.split("?")
-    _, _, *others = params.split("&")
-    if len(data) == qtd and offset < total:
-        next_params = '&'.join([f"qtd={qtd}", f"offset={offset+1}", *others])
-        pagination["pagination"]["next"] = f"{endpoint}?{next_params}"
-    if offset > 1 and offset <= total:
-        previous_parms = '&'.join([f"qtd={qtd}", f"offset={offset-1}", *others])
-        pagination["pagination"]["previous"] = f"{endpoint}?{previous_parms}"
-    last_params = '&'.join([f"qtd={qtd}", f"offset={total}", *others])
-    first_params = '&'.join([f"qtd={qtd}", "offset=1", *others])
-    if offset > 1:
-        pagination["pagination"]["first"] = f"{endpoint}?{first_params}"
-    if offset < total:
-        pagination["pagination"]["last"] = f"{endpoint}?{last_params}"
-    return pagination
+    _, _, *outros = params.split("&")
+    if len(dados) == quantidade and pagina < total:
+        proxima = '&'.join([f"quantidade={quantidade}", f"pagina={pagina+1}", *outros])
+        resposta["paginacao"]["proxima"] = f"{endpoint}?{proxima}"
+    if pagina > 1 and pagina <= total:
+        anterior = '&'.join([f"quantidade={quantidade}", f"pagina={pagina-1}", *outros])
+        resposta["paginacao"]["anterior"] = f"{endpoint}?{anterior}"
+    ultima = '&'.join([f"quantidade={quantidade}", f"pagina={total}", *outros])
+    primeira = '&'.join([f"quantidade={quantidade}", "pagina=1", *outros])
+    if pagina > 1:
+        resposta["paginacao"]["primeira"] = f"{endpoint}?{primeira}"
+    if pagina < total:
+        resposta["paginacao"]["ultima"] = f"{endpoint}?{ultima}"
+    return resposta

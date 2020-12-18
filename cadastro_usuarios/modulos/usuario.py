@@ -18,6 +18,21 @@ def _limpa_cpf(cpf):
     return decorator_limpa_cpf
 
 
+def __montar_usuarios(usuarios: dict):
+    return [{
+        "nome": usuario.nome,
+        "cpf": usuario.cpf,
+        "data_nascimento": str(usuario.data_nascimento) if usuario.data_nascimento else usuario.data_nascimento,
+        "cep": usuario.cep,
+        "rua": usuario.rua,
+        "numero": usuario.numero,
+        "bairro": usuario.bairro,
+        "cidade": usuario.cidade,
+        "uf": usuario.uf,
+        "estado": usuario.estado
+    } for usuario in usuarios]
+
+
 def __cpf_eh_valido(*, cpf: str):
     """
     Válida a consistência de um CPF, conforme instruções disponíveis em \
@@ -115,3 +130,15 @@ def listar_um(*, cpf: str):
         return usuario.dict()
     else:
         raise UsuarioInexistenteException(404, cpf)
+
+
+def listar_todos(quantidade: int, pagina: int):
+    """
+    Lista as informações de um usuário.
+    :param int pagina: Offset da página.
+    :param int quantidade: Quantidade de usuários pra listar.
+    :return: Total de usuários e usuários da base.
+    :rtype: int, list
+    """
+    total, usuarios = ListarUsuario().listar_todos(quantidade=quantidade, pagina=pagina)
+    return total, __montar_usuarios(usuarios)

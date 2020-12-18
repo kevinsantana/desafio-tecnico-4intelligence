@@ -10,7 +10,8 @@ from cadastro_usuarios.database.endereco import Endereco
 from cadastro_usuarios.modulos.usuario import _limpa_cpf
 from cadastro_usuarios.database.localizacao import Localizacao
 from cadastro_usuarios.database.local_publico import LocalPublico
-from cadastro_usuarios.excecoes.endereco import CepInvalidoException, ServicoException
+from cadastro_usuarios.excecoes.usuario import UsuarioInexistenteException
+from cadastro_usuarios.excecoes.endereco import CepInvalidoException, ServicoException, AtualizacaoInvalidaException
 
 
 def __limpa_cep(cep):
@@ -96,3 +97,27 @@ def inserir(*, cpf: str, cep: str, rua: str, bairro: str, cidade: str, uf: str,
         return True
     else:
         return False
+
+
+@_limpa_cpf("cpf")
+def atualizar(*, cpf: str, id_endereco: int, dados_atualizacao: dict):
+    id_uf, id_localizacao, id_usuario = Endereco(id_endereco=id_endereco).buscar().values()
+    if Usuario(cpf=cpf).existe() and Endereco(id_uf=id_uf, id_localizacao=id_localizacao,
+                                              id_usuario=id_usuario).esta_associado():
+        if dados_atualizacao:
+            return Localizacao(id_localizacao=id_localizacao,
+                               **dados_atualizacao).atualizar(dados_atualizacao=dados_atualizacao)
+        else:
+            raise AtualizacaoInvalidaException(404)
+    else:
+        raise UsuarioInexistenteException(404, cpf)
+
+
+@_limpa_cpf("cpf")
+def deletar(*, cpf: str, id_endereco: int):
+    id_uf, id_localizacao, id_usuario = Endereco(id_endereco=id_endereco).buscar().values()
+    if Usuario(cpf=cpf).existe() and Endereco(id_uf=id_uf, id_localizacao=id_localizacao,
+                                              id_usuario=id_usuario).esta_associado():
+        return Endereco(id_endereco=id_endereco).deletar()
+    else:
+        raise UsuarioInexistenteException(404, cpf)

@@ -4,10 +4,10 @@ from pydantic import BaseModel, Field
 
 
 class Paginacao(BaseModel):
-    proximo: str = Field(..., description="Proxima página com resultados")
+    proxima: str = Field(..., description="Proxima página com resultados")
     anterior: str = Field(..., description="Página anterior com resultados")
-    primeiro: str = Field(..., description="Primeira página que contem resultados")
-    ultimo: str = Field(..., description="Última página que contem resultados")
+    primeira: str = Field(..., description="Primeira página que contem resultados")
+    ultima: str = Field(..., description="Última página que contem resultados")
     total: int = Field(..., description="Quantidade total de páginas")
 
 

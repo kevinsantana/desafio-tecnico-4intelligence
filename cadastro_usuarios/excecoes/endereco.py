@@ -14,3 +14,10 @@ class ServicoException(CadastroUsuarioException):
         self.retorno_servico = retorno_servico
         mensagem = retorno_servico
         super().__init__(self.status_code, mensagem)
+
+
+class AtualizacaoInvalidaException(CadastroUsuarioException):
+    def __init__(self, status_code: int):
+        self.status_code = status_code
+        self.mensagem = "Nenhum dado foi fornecido para alteração"
+        super().__init__(self.status_code, self.mensagem)

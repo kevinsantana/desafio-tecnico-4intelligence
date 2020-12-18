@@ -75,3 +75,25 @@ class Localizacao(DataBase):
                             AND LOCALIZACAO.CIDADE = %(cidade)s AND LOCALIZACAO.BAIRRO = %(bairro)s
                             AND LOCALIZACAO.RUA = %(rua)s"""
         return self.find_one()
+
+    @campos_obrigatorios(["id_localizacao"])
+    def atualizar(self, dados_atualizacao: dict):
+        """
+        Atualiza a localização de um usuário. Para permitir a atualização genérica, ou seja, \
+        para que seja possível atualizar um campo qualquer (com exceção da uf e do estado) da \
+        localização de um usuário, foi preciso iterar sobre as informaçõesa serem atualizadas \
+        e montando a consulta. As últimas linhas trata da retirada do caracter ',' da clásula \
+        de atualização, i.e, ', WHERE LOCALIZACAO...'
+
+        :param str id_localizacao: Id da localização associada ao usuário.
+        :param dict dados_atualizacao: Dados da atualização.
+        :return: True se a operação for exeutada com sucesso, False caso contrário.
+        :rtype: bool
+        """
+        self.query_string = "UPDATE LOCALIZACAO SET"
+        for coluna, valor in list(dados_atualizacao.items())[:-1]:
+            self.query_string += f" {coluna.upper()} = '{valor}',"
+        self.query_string += " WHERE LOCALIZACAO.ID_LOCALIZACAO = %(id_localizacao)s"
+        ultima_virgula = self.query_string.rfind(",")
+        self.query_string = self.query_string[:ultima_virgula] + "" + self.query_string[ultima_virgula+1:]
+        return True if self.insert() else False

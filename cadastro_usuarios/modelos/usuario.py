@@ -1,7 +1,7 @@
 from typing import List, Optional
 from pydantic import BaseModel, Field
 
-from cadastro_usuarios.modelos import Message, parse_openapi
+from cadastro_usuarios.modelos import Message, parse_openapi, Paginacao
 
 
 class Usuario(BaseModel):
@@ -20,7 +20,7 @@ class InformacoesUsuario(BaseModel):
     bairro: Optional[str] = Field(description="Bairro do endereço")
     cidade: Optional[str] = Field(description="Cidade do endereço")
     uf: Optional[str] = Field(description="uf do endereço")
-    descricao: Optional[str] = Field(description="Estado do endereço")
+    estado: Optional[str] = Field(description="Estado do endereço")
 
 
 class InserirUsuarioResponse(BaseModel):
@@ -42,6 +42,11 @@ class DeletarUsuarioResponse(BaseModel):
 
 class ListarUsuarioResponse(BaseModel):
     resultado: List[InformacoesUsuario] = Field(..., description="Informações do usuário buscado")
+
+
+class ListarUsuariosResponse(BaseModel):
+    resultado: List[InformacoesUsuario] = Field(..., description="Informações do usuário buscado")
+    paginacao: Paginacao = Field(..., description="Dados relativos a paginação do objeto")
 
 
 USER_INSERT_DEFAULT_RESPONSE = parse_openapi([
@@ -66,3 +71,4 @@ LISTAR_UM_USUARIO_DEFAULT_RESPONSE = parse_openapi([
     Message(status=404, mensagem="O usuário não existe",
             stacktrace="Traceback (most recent call last): ...")
 ])
+LISTAR_USUARIOS_DEFAULT_RESPONSE = parse_openapi()

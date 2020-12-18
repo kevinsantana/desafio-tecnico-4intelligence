@@ -112,7 +112,7 @@ class Usuario(DataBase):
 class ListarUsuario(DataBase):
     def __init__(self, nome: str = None, cpf: str = None, data_nascimento: float = None,
                  rua: str = None, numero: int = None, cep: str = None, cidade: str = None,
-                 bairro: str = None, uf: str = None, descricao: str = None):
+                 bairro: str = None, uf: str = None, estado: str = None):
         self.__nome = nome
         self.__cpf = cpf
         self.__data_nascimento = data_nascimento
@@ -122,7 +122,7 @@ class ListarUsuario(DataBase):
         self.__cidade = cidade
         self.__bairro = bairro
         self.__uf = uf
-        self.__descricao = descricao
+        self.__estado = estado
 
     @property
     def nome(self):
@@ -165,8 +165,8 @@ class ListarUsuario(DataBase):
         return self.__uf
 
     @property
-    def descricao(self):
-        return self.__descricao
+    def estado(self):
+        return self.__estado
 
     def dict(self):
         return {key.replace("_ListarUsuario__", ""): value for key, value in self.__dict__.items()}
@@ -180,7 +180,7 @@ class ListarUsuario(DataBase):
         :return: Informações do usuário buscado.
         :rtype: ListarUsuario
         """
-        self.query_string = """SELECT NOME, CPF, DATA_NASCIMENTO, RUA, NUMERO, CEP, CIDADE, BAIRRO, UF, DESCRICAO
+        self.query_string = """SELECT NOME, CPF, DATA_NASCIMENTO, RUA, NUMERO, CEP, CIDADE, BAIRRO, UF, ESTADO
                             FROM USUARIO
                             JOIN ENDERECO ON ENDERECO.ID_USUARIO = USUARIO.ID_USUARIO
                             JOIN LOCAL_PUBLICO ON LOCAL_PUBLICO.ID_UF = ENDERECO.ID_UF
@@ -189,3 +189,24 @@ class ListarUsuario(DataBase):
                             WHERE USUARIO.CPF = %(cpf)s"""
         usuario = self.find_one()
         return ListarUsuario(**dict(usuario)) if usuario else None
+
+    def listar_todos(self, pagina: int, quantidade: int):
+        """
+        Lista as informações de um usuário.
+
+        :param int pagina: Offset da página.
+        :param int quantidade: Quantidade de usuários pra listar.
+        :return: Informações dos usuários da base.
+        :rtype: ListarUsuario
+        """
+        self.__offset = (pagina-1)*quantidade
+        self.__quantidade = quantidade
+        self.query_string = """SELECT NOME, CPF, DATA_NASCIMENTO, RUA, NUMERO, CEP, CIDADE, BAIRRO, UF, ESTADO
+                            FROM USUARIO
+                            FULL OUTER JOIN ENDERECO ON ENDERECO.ID_USUARIO = USUARIO.ID_USUARIO
+                            FULL OUTER JOIN LOCAL_PUBLICO ON LOCAL_PUBLICO.ID_UF = ENDERECO.ID_UF
+                            FULL OUTER JOIN LOCALIZACAO ON LOCALIZACAO.ID_LOCALIZACAO = LOCAL_PUBLICO.ID_LOCALIZACAO
+                            JOIN DOMINIO_UF ON DOMINIO_UF.ID_UF = LOCAL_PUBLICO.ID_UF
+                            LIMIT %(quantidade)s OFFSET %(offset)s"""
+        usuarios, total = self.find_all(total=True)
+        return total, [ListarUsuario(**dict(usuario)) for usuario in usuarios]
